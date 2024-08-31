@@ -50,7 +50,7 @@
                         <?php foreach ($categories as $key => $category): ?>
                             <tr>
                                 <td><?php echo $key + 1; ?></td>
-                                <td><?php echo $category['title']; ?></td>
+                                <td><?php echo $category['name']; ?></td>
                                 <td>
                                     <a class="fa fa-pencil btn edit"
                                         href="art_categories.php?edit-art-category=<?php echo $category['id'] ?>">

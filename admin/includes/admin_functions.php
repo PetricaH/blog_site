@@ -293,7 +293,7 @@ function deleteTopic($topic_id) {
 //get all art categories from database
 function getAllArtCategories() {
     global $conn;
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM art_categories";
     $result = mysqli_query($conn, $sql);
     $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $categories;
@@ -310,14 +310,14 @@ function createArtCategory($request_values) {
         array_push($errors, "category name required");
     }
     //ensure that no category is saved twice
-    $category_check_query = "SELECT * FROM categories WHERE slug='$category_slug' LIMIT 1";
+    $category_check_query = "SELECT * FROM art_categories WHERE slug='$category_slug' LIMIT 1";
     $result = mysqli_query($conn, $category_check_query);
     if (mysqli_num_rows($result) > 0) { // if category exists
         array_push($errors, "art category already exists");    
     }
     // register art category if there are no errors in the form
     if (count($errors) == 0) {
-        $query = "INSERT INTO categories (title, slug)
+        $query = "INSERT INTO art_categories (name, slug)
                             VALUE('$category_name', '$category_slug')";
         mysqli_query($conn, $query);
 

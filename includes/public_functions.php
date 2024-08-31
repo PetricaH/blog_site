@@ -84,7 +84,7 @@ function getAllTopics() {
 // function to fetch all published artworks
 function getPublishedArtworks() {
     global $conn;
-    $sql = "SELECT a.*, c.title as category FROM art a LEFT JOIN categories c ON a.art_category_id = c.id WHERE a.published=true ORDER BY a.created_at DESC";
+    $sql = "SELECT a.*, c.name as category FROM art a LEFT JOIN art_categories c ON a.art_category_id = c.id WHERE a.published=true ORDER BY a.created_at DESC";
     $result = mysqli_query($conn, $sql);
 
     if (!$result) {
@@ -98,7 +98,7 @@ function getPublishedArtworks() {
 // function to fetch an artwork by its ID
 function getArtworkById($category_id) {
     global $conn;
-    $sql = "SELECT * FROM categories WHERE id=$category_id AND published-true";
+    $sql = "SELECT * FROM art_categories WHERE id=$category_id AND published-true";
     $result = mysqli_query($conn, $sql);
     $artwork = mysqli_fetch_assoc($result);
     return $artwork;
@@ -107,7 +107,7 @@ function getArtworkById($category_id) {
 // function to get published artworks by category
 function getPublishedArtworksByCategory($category_id) {
     global $conn;
-    $sql = "SELECT * FROM categories WHERE category_id=$category_id AND published=true";
+    $sql = "SELECT * FROM art_categories WHERE category_id=$category_id AND published=true";
     $result = mysqli_query($conn, $sql);
     $artworks = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $artworks;
@@ -116,7 +116,7 @@ function getPublishedArtworksByCategory($category_id) {
 // function to get category name by id
 function getCategoryNameById($category_id) {
     global $conn; 
-    $sql = "SELECT name FROM categories WHERE id=$category_id";
+    $sql = "SELECT name FROM art_categories WHERE id=$category_id";
     $result = mysqli_query($conn, $sql);
     $category = mysqli_fetch_assoc($result);
     return $category['name'];
@@ -124,7 +124,7 @@ function getCategoryNameById($category_id) {
 
 function getAllCategories() {
     global $conn;
-    $sql = "SELECT * FROM categories";
+    $sql = "SELECT * FROM art_categories";
     $result = mysqli_query($conn, $sql);
     $categories = mysqli_fetch_all($result, MYSQLI_ASSOC);
     return $categories;

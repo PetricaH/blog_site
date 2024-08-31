@@ -19,7 +19,7 @@
             <div class="post-wrapper">
                 <!-- full artwork div -->
                 <div class="full-post-div">
-                    <?php if ($categories['published'] == false): ?>
+                    <?php if ($art['published'] == false): ?>
                         <h2 class="post-title">Sorry... this artwork has not been published</h2>
                     <?php else: ?>
                         <h2 class="post-title"><?php echo $artwork['name']; ?></h2>
