@@ -15,69 +15,72 @@
         <!-- banner -->
         <?php include( ROOT_PATH . '/includes/banner.php') ?>
 
-                <!-- Page content -->
-                <div class="content">
+        <!-- Page content -->
+        <div class="content">
 
 
                         <!-- RECENT ARTWORKS SECTION START -->
-            <h2 class="content-title">Recent Artworks</h2>
-            <hr>
+                <div class="different-section">
+                        <h2 class="content-title">Recent Artworks</h2>
+                        <hr>
+                        <div class="different-section-content">
+                                <?php foreach ($artworks as $art): ?>
+                                        <div class="post" style="margin-left: 0px;">
+                                                <img src="<?php echo BASE_URL . '/uploads/art/' . $art['art_image']; ?>" class="post_image" alt="">
 
-            <?php foreach ($artworks as $art): ?>
-    <div class="post" style="margin-left: 0px;">
-        <img src="<?php echo BASE_URL . '/uploads/art/' . $art['art_image']; ?>" class="post_image" alt="">
+                                                <?php if (isset($art['category']['name'])): ?>
+                                                <a href="<?php echo BASE_URL . 'filtered_arts.php?category=' . $art['category']['id']; ?>" class="btn category">
+                                                        <?php echo $art['category']['name']; ?>
+                                                </a>
+                                                <?php endif ?>
 
-        <?php if (isset($art['category']['name'])): ?>
-            <a href="<?php echo BASE_URL . 'filtered_arts.php?category=' . $art['category']['id']; ?>" class="btn category">
-                <?php echo $art['category']['name']; ?>
-            </a>
-        <?php endif ?>
-
-        <a href="single_art.php?art-id=<?php echo $art['id']; ?>">
-            <div class="post_info">
-                <h3><?php echo $art['name']; ?></h3>
-                <div class="info">
-                    <span><?php echo date("F j, Y", strtotime($art["created_at"])); ?></span>
-                    <span class="read_more">View more...</span>
+                                                <h3><?php echo $art['name']; ?></h3>
+                                                <span><?php echo date("F j, Y", strtotime($art["created_at"])); ?></span>
+                                                <a href="single_art.php?art-id=<?php echo $art['id']; ?>">
+                                                <div class="post_info">
+                                                        <div class="info">
+                                                        <span class="read_more">View more...</span>
+                                                        </div>
+                                                </div>
+                                                </a>
+                                        </div>
+                                <?php endforeach; ?>
+                        </div>
                 </div>
-            </div>
-        </a>
-    </div>
-<?php endforeach; ?>
 
 
              <!-- RECENT ARTWORKS SECTION END -->
 
 
              <!-- RECENT ARTICLES SECTION START -->
-
+                <div class="different-section">
                         <h2 class="content-title">Recent Articles</h2>
                         <hr>
                         <!-- more content still to come here ... -->
+                        <div class="different-section-content">
+                                <?php foreach ($posts as $post): ?>
+                                        <div class="post" style="margin-left: 0px;">
+                                                <img src="<?php echo BASE_URL . '/static/images/' . $post['image']; ?>" class="post_image" alt="">
 
-                        <?php foreach ($posts as $post): ?>
-                                <div class="post" style="margin-left: 0px;">
-                                        <img src="<?php echo BASE_URL . '/static/images/' . $post['image']; ?>" class="post_image" alt="">
+                                                <?php if (isset($post['topic']['name'])): ?>
+                                                        <a href="<?php echo BASE_URL . 'filtered_posts.php?topic=' . $post['topic']['id'] ?>"
+                                                                class="btn category">
+                                                                <?php echo $post['topic']['name'] ?>
+                                                        </a>
+                                                <?php endif ?>
 
-                                        <?php if (isset($post['topic']['name'])): ?>
-                                                <a href="<?php echo BASE_URL . 'filtered_posts.php?topic=' . $post['topic']['id'] ?>"
-                                                        class="btn category">
-                                                        <?php echo $post['topic']['name'] ?>
-                                                </a>
-                                        <?php endif ?>
-
-                                        <a href="single_post.php?post-slug=<?php echo $post['slug']; ?>">
-                                                <div class="post_info">
-                                                        <h3><?php echo $post['title'] ?></h3>
-                                                        <div class="info">
-                                                                <span><?php echo date("F j, Y ", strtotime($post["created_at"])); ?></span>
-                                                                <span class="read_more">Read more...</span>
+                                                <a href="single_post.php?post-slug=<?php echo $post['slug']; ?>">
+                                                        <div class="post_info">
+                                                                <h3><?php echo $post['title'] ?></h3>
+                                                                <div class="info">
+                                                                        <span><?php echo date("F j, Y ", strtotime($post["created_at"])); ?></span>
+                                                                        <span class="read_more">Read more...</span>
+                                                                </div>
                                                         </div>
-                                                </div>
-                                        </a>
-                                </div>
-                        <?php endforeach ?>
-
+                                                </a>
+                                        </div>
+                                <?php endforeach ?>
+                        </div>
                         <!-- RECENT ARTICLES SECTION END -->
                 
                 </div>
