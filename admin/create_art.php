@@ -35,7 +35,7 @@
                     <option value="" selected disabled>Choose Category</option>
                     <?php foreach ($categories as $category): ?>
                         <option value="<?php echo $category['id']; ?>">
-                            <?php echo $category['title']; ?>
+                            <?php echo $category['name']; ?>
                         </option>
                     <?php endforeach ?>
                 </select>

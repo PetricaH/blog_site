@@ -364,7 +364,7 @@ function updateArtCategory($request_values) {
 // delete art category 
 function deleteArtCategory($category_id) {
     global $conn;
-    $sql = "DELETE FROM categories WHERE id=$category_id";
+    $sql = "DELETE FROM art_categories WHERE id=$category_id";
     if (mysqli_query($conn, $sql)) {
         $_SESSION['message'] = "art category successfully deleted";
         header('location: art_categories.php');

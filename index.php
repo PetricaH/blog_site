@@ -24,26 +24,27 @@
             <hr>
 
             <?php foreach ($artworks as $art): ?>
-                <div class="post" style="margin-left: 0px;">
-                    <img src="<?php echo BASE_URL . '/uploads/art/' . $art['art_image']; ?>" class="post_image" alt="">
+    <div class="post" style="margin-left: 0px;">
+        <img src="<?php echo BASE_URL . '/uploads/art/' . $art['art_image']; ?>" class="post_image" alt="">
 
-                    <?php if (isset($art['category'])): ?>
-                        <a href="#" class="btn category">
-                            <?php echo $art['category']; ?>
-                        </a>
-                    <?php endif ?>
+        <?php if (isset($art['category']['name'])): ?>
+            <a href="<?php echo BASE_URL . 'filtered_arts.php?category=' . $art['category']['id']; ?>" class="btn category">
+                <?php echo $art['category']['name']; ?>
+            </a>
+        <?php endif ?>
 
-                    <a href="single_art.php?art-id=<?php echo $art['id']; ?>">
-                        <div class="post_info">
-                            <h3><?php echo $art['name'] ?></h3>
-                            <div class="info">
-                                <span><?php echo date("F j, Y ", strtotime($art["created_at"])); ?></span>
-                                <span class="read_more">View more...</span>
-                            </div>
-                        </div>
-                    </a>
+        <a href="single_art.php?art-id=<?php echo $art['id']; ?>">
+            <div class="post_info">
+                <h3><?php echo $art['name']; ?></h3>
+                <div class="info">
+                    <span><?php echo date("F j, Y", strtotime($art["created_at"])); ?></span>
+                    <span class="read_more">View more...</span>
                 </div>
-            <?php endforeach ?>
+            </div>
+        </a>
+    </div>
+<?php endforeach; ?>
+
 
              <!-- RECENT ARTWORKS SECTION END -->
 
